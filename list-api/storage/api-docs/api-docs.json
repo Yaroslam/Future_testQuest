@@ -1,0 +1,335 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Swagger API documentation example",
+        "contact": {
+            "email": "YaroCherk@ya.ru"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/api/v1",
+            "description": "Laravel Swagger API server"
+        }
+    ],
+    "paths": {
+        "/notebook/": {
+            "get": {
+                "tags": [
+                    "Notebooks"
+                ],
+                "summary": "Get list of all notebooks",
+                "operationId": "GetNotebooks",
+                "responses": {
+                    "200": {
+                        "description": "Succses operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "current_page": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "FCs": {
+                                                        "type": "string"
+                                                    },
+                                                    "mob_phone": {
+                                                        "type": "string",
+                                                        "example": "+19803655718"
+                                                    },
+                                                    "birthdate": {
+                                                        "type": "string",
+                                                        "format": "date"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "example@ya.ru"
+                                                    },
+                                                    "company_id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "photo_path": {
+                                                        "type": "string",
+                                                        "example": "image.png"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "first_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8080/api/v1/notebook?page=1"
+                                        },
+                                        "from": {
+                                            "type": "integer",
+                                            "example": "0"
+                                        },
+                                        "next_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8080/api/v1/notebook?page=2"
+                                        },
+                                        "path": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8080/api/v1/notebook"
+                                        },
+                                        "per_page": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "prev_page_url": {
+                                            "type": "string",
+                                            "example": "http://127.0.0.1:8080/api/v1/notebook?page=2"
+                                        },
+                                        "to": {
+                                            "type": "intgeger",
+                                            "example": "2"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Notebooks"
+                ],
+                "summary": "Save single notebook",
+                "operationId": "SaveNotebook",
+                "requestBody": {
+                    "description": "parameters for new notebook",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "FCs",
+                                    "email",
+                                    "mob_phone"
+                                ],
+                                "properties": {
+                                    "FCs": {
+                                        "type": "string"
+                                    },
+                                    "mob_phone": {
+                                        "type": "string",
+                                        "example": "+19803655718"
+                                    },
+                                    "birthdate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "example@ya.ru"
+                                    },
+                                    "company_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "photo_path": {
+                                        "type": "string",
+                                        "example": "image.png"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "NoteBook add succeces"
+                    },
+                    "402": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/notebook/{id}": {
+            "get": {
+                "tags": [
+                    "Notebooks"
+                ],
+                "summary": "Get notebook by ID",
+                "operationId": "GetSingleNotebook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of notebook",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "NoteBook get succeces",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "FCs": {
+                                            "type": "string"
+                                        },
+                                        "mob_phone": {
+                                            "type": "string",
+                                            "example": "+19803655718"
+                                        },
+                                        "birthdate": {
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "example@ya.ru"
+                                        },
+                                        "company_id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "photo_path": {
+                                            "type": "string",
+                                            "example": "image.png"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NoteBook with id doesnt exist"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Notebooks"
+                ],
+                "summary": "Update notebook by ID",
+                "operationId": "UpdateSingleNotebook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of notebook",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Parameters that will update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "FCs": {
+                                        "type": "string"
+                                    },
+                                    "mob_phone": {
+                                        "type": "string",
+                                        "example": "+19803655718"
+                                    },
+                                    "birthdate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "example@ya.ru"
+                                    },
+                                    "company_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "photo_path": {
+                                        "type": "string",
+                                        "example": "image.png"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "404": {
+                        "description": "NoteBook with id doesnt exist"
+                    },
+                    "402": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Notebooks"
+                ],
+                "summary": "Delete notebook by ID",
+                "operationId": "notebooksDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of notebook",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "NoteBook delete succeces"
+                    },
+                    "402": {
+                        "description": "NoteBook with id doesnt exist"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Notebooks",
+            "description": "Some example pages"
+        }
+    ]
+}
